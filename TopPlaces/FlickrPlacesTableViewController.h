@@ -9,5 +9,4 @@
 #import "FlickrDataTableViewController.h"
 
 @interface FlickrPlacesTableViewController : FlickrDataTableViewController
-
 @end

@@ -80,8 +80,6 @@
 		64D5CA40164B014700449B6A = {
 			isa = PBXGroup;
 			children = (
-				64532DA41680594800585504 /* CoreLocation.framework */,
-				64532DA51680594800585504 /* MapKit.framework */,
 				64D5CA55164B014700449B6A /* TopPlaces */,
 				64D5CA4E164B014700449B6A /* Frameworks */,
 				64D5CA4C164B014700449B6A /* Products */,
@@ -99,6 +97,8 @@
 		64D5CA4E164B014700449B6A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				64532DA41680594800585504 /* CoreLocation.framework */,
+				64532DA51680594800585504 /* MapKit.framework */,
 				64D5CA4F164B014700449B6A /* UIKit.framework */,
 				64D5CA51164B014700449B6A /* Foundation.framework */,
 				64D5CA53164B014700449B6A /* CoreGraphics.framework */,

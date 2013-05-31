@@ -39,7 +39,7 @@
     NSData *photoData = [NSData dataWithContentsOfURL:[FlickrFetcher urlForPhoto:_photo format:FlickrPhotoFormatLarge]];
     self.photoView.image = [UIImage imageWithData:photoData];
     self.photoView.frame = CGRectMake(0, 0, self.photoView.image.size.width, self.photoView.image.size.height); //match frame size to image size
-    self.scrollView.contentSize = self.photoView.image.size; //set scroll area to entirety of image size, must be set after photoView is set up
+    self.scrollView.contentSize = self.photoView.image.size; //set scroll area to entirety of image size, must be set after photoView is set up 
     self.title = [_photo objectForKey:FLICKR_PHOTO_TITLE];
 }
 
