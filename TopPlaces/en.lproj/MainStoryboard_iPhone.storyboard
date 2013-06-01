@@ -69,17 +69,13 @@
         <scene sceneID="Mnm-2c-tbM">
             <objects>
                 <viewController id="SUw-lL-G9Z" customClass="MapViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="FUH-Ph-j9q">
+                    <mapView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="KjR-LL-fbT">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="KjR-LL-fbT">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </mapView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <connections>
+                            <outlet property="delegate" destination="SUw-lL-G9Z" id="hvA-Hg-NxA"/>
+                        </connections>
+                    </mapView>
                     <navigationItem key="navigationItem" id="Dfg-vQ-oDk"/>
                     <connections>
                         <outlet property="mapView" destination="KjR-LL-fbT" id="bPj-3n-iE9"/>
@@ -336,6 +332,9 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="oN1-yt-kiD">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="0Jr-8H-L4Q" id="XuG-qa-EUs"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -360,9 +359,6 @@
         </class>
         <class className="FlickrPlacesTableViewController" superclassName="FlickrDataTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FlickrPlacesTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="refresh:"/>
-            </relationships>
         </class>
         <class className="FlickrRecentTableViewController" superclassName="FlickrPhotoTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FlickrRecentTableViewController.h"/>
