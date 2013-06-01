@@ -83,11 +83,12 @@
                     <navigationItem key="navigationItem" id="Dfg-vQ-oDk"/>
                     <connections>
                         <outlet property="mapView" destination="KjR-LL-fbT" id="bPj-3n-iE9"/>
+                        <segue destination="nMs-Td-aA3" kind="push" identifier="showAnnotationPlace" id="ypI-9l-nHn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Obv-fs-2Jo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2159" y="-443"/>
+            <point key="canvasLocation" x="2023" y="-487"/>
         </scene>
         <!--Flickr Photo Table View Controller-->
         <scene sceneID="Jv7-an-19R">
@@ -342,11 +343,12 @@
                     <navigationItem key="navigationItem" id="tpN-ZL-302"/>
                     <connections>
                         <outlet property="mapView" destination="oN1-yt-kiD" id="Lxl-hz-g7o"/>
+                        <segue destination="fWY-Cj-P1G" kind="push" identifier="showAnnotationPhoto" id="yGa-Hl-9j3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TsV-NJ-kYl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2759" y="-449"/>
+            <point key="canvasLocation" x="2687" y="-499"/>
         </scene>
     </scenes>
     <classes>
@@ -358,9 +360,15 @@
         </class>
         <class className="FlickrPlacesTableViewController" superclassName="FlickrDataTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FlickrPlacesTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="refresh:"/>
+            </relationships>
         </class>
         <class className="FlickrRecentTableViewController" superclassName="FlickrPhotoTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FlickrRecentTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="clearRecents:"/>
+            </relationships>
         </class>
         <class className="MapViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
@@ -381,4 +389,8 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="ypI-9l-nHn"/>
+        <segue reference="yGa-Hl-9j3"/>
+    </inferredMetricsTieBreakers>
 </document>

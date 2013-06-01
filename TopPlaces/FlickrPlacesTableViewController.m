@@ -59,6 +59,7 @@
     }
     if ([segue.identifier isEqualToString:@"showCityMap"]) {
         [segue.destinationViewController setAnnotations:[self mapAnnotations]];
+        //NSLog(@"Here we go: %@", self.items.description);
     }    
 }
 

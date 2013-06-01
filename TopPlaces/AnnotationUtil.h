@@ -11,6 +11,6 @@
 
 //sets up annotations for MapView
 @interface AnnotationUtil : NSObject <MKAnnotation> //protocol for common annotation attributes (title, subtitle, coordinate)
-+ (AnnotationUtil *) annotationForItem:(NSDictionary *) item;
 @property (nonatomic, strong) NSDictionary* mappedItem;
++ (AnnotationUtil *) annotationForItem:(NSDictionary *) item;
 @end
