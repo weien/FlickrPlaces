@@ -22,10 +22,9 @@
     NSUserDefaults *recentPhotoDefaults = [NSUserDefaults standardUserDefaults];
     //loop through NSUserDefaults, blow away keyed objects
     for (NSString *key in [[recentPhotoDefaults dictionaryRepresentation] allKeys]) {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+         [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
     }
     [self viewWillAppear:FALSE];
 }
-
 
 @end

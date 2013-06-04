@@ -25,7 +25,7 @@
     dispatch_queue_t downloadQueue = dispatch_queue_create("flickr downloader", NULL);
     dispatch_async(downloadQueue, ^{
         NSArray *fetchedItems = [FlickrFetcher topPlaces];
-        dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{ //set self.items on main queue
             self.navigationItem.leftBarButtonItem = sender;
             self.items = fetchedItems;
         });

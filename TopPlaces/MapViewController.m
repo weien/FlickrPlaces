@@ -51,9 +51,8 @@
         if (self.mapViewControllerDelegate) //check for image delegate before allocating space
         aView.leftCalloutAccessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)]; //30x30 is good size for an annotation image
     }
-    else {
-        aView.annotation = annotation;
-    }
+    aView.annotation = annotation;
+    [(UIImageView*)aView.leftCalloutAccessoryView setImage:nil]; //prevent dirty data use
     return aView;
 }
 
