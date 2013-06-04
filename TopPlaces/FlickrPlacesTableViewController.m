@@ -54,8 +54,17 @@
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showPhotosForPlace"]) {        
         NSDictionary *item = [self.items objectAtIndex:self.tableView.indexPathForSelectedRow.row];
-        [segue.destinationViewController setItems:[FlickrFetcher photosInPlace:item maxResults:50]];
-        [segue.destinationViewController setTitle:[item objectForKey:@"woe_name"]];
+        
+        dispatch_queue_t downloadQueue = dispatch_queue_create("flickr downloader", NULL);
+        dispatch_async(downloadQueue, ^{
+            FlickrDataTableViewController* dvc = (FlickrDataTableViewController*) segue.destinationViewController;
+            NSArray *fetchedItems = [FlickrFetcher photosInPlace:item maxResults:50];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [dvc setItems:fetchedItems];
+                [dvc setTitle:[item objectForKey:@"woe_name"]];
+                [dvc.spinner stopAnimating];
+            });
+        });
     }
     if ([segue.identifier isEqualToString:@"showCityMap"]) {
         [segue.destinationViewController setAnnotations:[self mapAnnotations]];

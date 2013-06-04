@@ -13,6 +13,7 @@
 
 @implementation FlickrDataTableViewController
 @synthesize items = _items;
+@synthesize spinner = _spinner;
 
 - (void)setItems:(NSArray *)items {
     if (_items != items) {
@@ -61,6 +62,16 @@
     return cell;
 }
 
+- (void) initSpinner {
+    if (!self.spinner) {
+        self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        [self.view addSubview:self.spinner];
+        self.spinner.center = self.view.center;
+        self.spinner.hidesWhenStopped = YES;
+        [self.spinner startAnimating];
+    }
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -70,11 +81,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initSpinner];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    [self setSpinner:nil];
 }
 
 @end

@@ -277,11 +277,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.20000000298023224" maximumZoomScale="5" id="xUh-Aa-QYG">
-                                <rect key="frame" x="-20" y="-20" width="360" height="407"/>
+                                <rect key="frame" x="0.0" y="0.0" width="360" height="407"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="TopLeft" id="2rr-LX-iGu">
-                                        <rect key="frame" x="20" y="20" width="320" height="367"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
                                 </subviews>
@@ -350,43 +350,13 @@
             <point key="canvasLocation" x="2687" y="-499"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="FlickrDataTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlickrDataTableViewController.h"/>
-        </class>
-        <class className="FlickrPhotoTableViewController" superclassName="FlickrDataTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlickrPhotoTableViewController.h"/>
-        </class>
-        <class className="FlickrPlacesTableViewController" superclassName="FlickrDataTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlickrPlacesTableViewController.h"/>
-        </class>
-        <class className="FlickrRecentTableViewController" superclassName="FlickrPhotoTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlickrRecentTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="clearRecents:"/>
-            </relationships>
-        </class>
-        <class className="MapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-            </relationships>
-        </class>
-        <class className="PhotoViewerViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoViewerViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="photoView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ypI-9l-nHn"/>
-        <segue reference="yGa-Hl-9j3"/>
+        <segue reference="Lak-rX-c5e"/>
+        <segue reference="kb8-7H-XwR"/>
     </inferredMetricsTieBreakers>
 </document>

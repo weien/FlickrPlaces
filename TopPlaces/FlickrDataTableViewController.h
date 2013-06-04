@@ -14,4 +14,5 @@
 @interface FlickrDataTableViewController : UITableViewController
 - (NSArray*) mapAnnotations;
 @property (nonatomic, strong) NSArray* items; //of Flickr dictionaries
+@property (nonatomic, strong) UIActivityIndicatorView* spinner;
 @end

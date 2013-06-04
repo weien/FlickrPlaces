@@ -9,8 +9,11 @@
 #import "MapViewController.h"
 #import <MapKit/MapKit.h>
 #import "AnnotationUtil.h"
+
+//future work: remove need to reference these classes
 #import "FlickrFetcher.h"
 #import "PhotoViewerViewController.h"
+#import "FlickrPhotoTableViewController.h"
 
 @interface MapViewController () <MKMapViewDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -43,9 +46,9 @@
 
 //sets up preview image within annotation for mapView of photos
 - (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
-    MKAnnotationView *aView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"MapVC"]; //instead of always creating a new one
+    MKAnnotationView *aView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"MapVC"];
     if (!aView) {
-        aView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"MapVC"]; //allocate if none existing
+        aView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"MapVC"];
         aView.canShowCallout = YES;
         aView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure]; //must set accessoryview here, not in didSelectAnnotationView
         if (self.mapViewControllerDelegate) //check for image delegate before allocating space
@@ -73,13 +76,35 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showAnnotationPlace"]) {
-        //NSLog(@"prepare for showAnnotationPlace");
-        [segue.destinationViewController setItems:[FlickrFetcher photosInPlace:sender maxResults:50]];
+
+        dispatch_queue_t downloadQueue = dispatch_queue_create("flickr downloader", NULL);
+        dispatch_async(downloadQueue, ^{
+            FlickrDataTableViewController* dvc = (FlickrDataTableViewController*) segue.destinationViewController;
+            NSArray *fetchedItems = [FlickrFetcher photosInPlace:sender maxResults:50];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [dvc setItems:fetchedItems];
+                [dvc setTitle:[sender objectForKey:@"woe_name"]];
+                [dvc.spinner stopAnimating];
+            });
+        });
     }
     if ([segue.identifier isEqualToString:@"showAnnotationPhoto"]) {
-        //NSLog(@"prepare for showAnnotationPhoto");
         [segue.destinationViewController setPhoto:sender];
     }
+}
+
+//thanks to Jan S. http://stackoverflow.com/a/10645929/2284713
+- (void) setInitialVisibleMapRect {
+    MKMapRect zoomRect = MKMapRectNull;
+    for (AnnotationUtil *anno in self.annotations) {
+        MKMapPoint annotationPoint = MKMapPointForCoordinate(anno.coordinate);
+        MKMapRect pointRect = MKMapRectMake(annotationPoint.x, annotationPoint.y, 0, 0);
+        if (MKMapRectIsNull(zoomRect))
+            zoomRect = pointRect;
+        else
+            zoomRect = MKMapRectUnion(zoomRect, pointRect);
+    }
+    [self.mapView setVisibleMapRect:zoomRect animated:YES];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -91,7 +116,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.mapView.delegate = self; //very important; check to make sure storyboard/nib also reflects this delegate assignment
+    self.mapView.delegate = self; //very important; check to make sure nib also reflects this delegate assignment
+    [self setInitialVisibleMapRect];
 }
 
 - (void)viewDidUnload

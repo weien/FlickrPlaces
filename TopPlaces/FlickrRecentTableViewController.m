@@ -15,12 +15,13 @@
     NSUserDefaults *recentPhotoDefaults = [NSUserDefaults standardUserDefaults];
     NSArray *recentPhotos = [[[recentPhotoDefaults objectForKey:@"recents"] reverseObjectEnumerator] allObjects];
     self.items = recentPhotos;
+    [self.spinner stopAnimating];
     [self.tableView reloadData];
 }
 
 - (IBAction)clearRecents:(id)sender {
     NSUserDefaults *recentPhotoDefaults = [NSUserDefaults standardUserDefaults];
-    //loop through NSUserDefaults, blow away keyed objects
+    //loop through NSUserDefaults, remove objects for all keys
     for (NSString *key in [[recentPhotoDefaults dictionaryRepresentation] allKeys]) {
          [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
     }
